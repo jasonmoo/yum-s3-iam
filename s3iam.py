@@ -27,6 +27,7 @@ import time
 import hashlib
 import hmac
 import json
+import os
 
 import yum
 import yum.config
@@ -64,8 +65,12 @@ def prereposetup_hook(conduit):
             new_repo.basecachedir = repo.basecachedir
             new_repo.gpgcheck = repo.gpgcheck
             new_repo.gpgkey = repo.gpgkey
-            new_repo.key_id = repo.key_id
-            new_repo.secret_key = repo.secret_key
+            try:
+                new_repo.key_id = os.environ['YUM_AWS_ACCESS_KEY_ID']
+                new_repo.secret_key = os.environ['YUM_AWS_SECRET_ACCESS_KEY']
+            except:
+                new_repo.key_id = repo.key_id
+                new_repo.secret_key = repo.secret_key
             new_repo.proxy = repo.proxy
             new_repo.enablegroups = repo.enablegroups
             if hasattr(repo, 'priority'):

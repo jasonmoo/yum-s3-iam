@@ -18,6 +18,10 @@ access within the instance. This means you don't need to store them
 anywhere, to change and/or rotate them, and you have a fine-grain
 control on what actions can be made using those credentials.
 
+## Environment Credentials
+Environment variables `YUM_AWS_ACCESS_KEY_ID` and `YUM_AWS_SECRET_ACCESS_KEY` are
+used when present.
+
 ## How-to set it up?
 
 Read a great blog post by Jeremy Carroll which in depth explains how to
